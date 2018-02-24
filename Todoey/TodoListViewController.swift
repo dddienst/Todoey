@@ -26,7 +26,7 @@ class TodoListViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "ToDoItemCell")
         cell.textLabel?.text = itemArray[indexPath.row].0
-        
+        cell.accessoryType = itemArray[indexPath.row].1 ? .checkmark : .none
         return cell
     }
 
@@ -37,10 +37,9 @@ class TodoListViewController: UITableViewController {
     //MARK - Tableview Delegate Methods
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        let cell = tableView.cellForRow(at: indexPath)!
         
         itemArray[indexPath.row].1 = !itemArray[indexPath.row].1
-        cell.accessoryType = itemArray[indexPath.row].1 ? .checkmark : .none
+        //cell.accessoryType = itemArray[indexPath.row].1 ? .checkmark : .none
         tableView.reloadData()
     }
     
